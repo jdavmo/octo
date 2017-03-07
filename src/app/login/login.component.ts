@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 
 import { TdLoadingService } from '@covalent/core';
 
@@ -8,20 +9,32 @@ import { TdLoadingService } from '@covalent/core';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
-
-  username: string;
-  password: string;
+export class LoginComponent {  
 
   constructor(private _router: Router,
-              private _loadingService: TdLoadingService) {}
+              private _loadingService: TdLoadingService,
+              public af: AngularFire) {
+    
+    //check auth                
+    this.af.auth.subscribe(auth => {
+      if (auth) {
+        this._router.navigate(['/']);
+      }
+    })
 
-  login(): void {
-    this._loadingService.register();
-    alert('Mock log in as ' + this.username);
-    setTimeout(() => {
-      this._router.navigate(['/']);
-      this._loadingService.resolve();
-    }, 2000);
+  }
+  //Login with Twitter
+  login() {
+    this.af.auth.login({
+      provider: AuthProviders.Twitter,
+      method: AuthMethods.Popup,
+    });
+  }
+  //
+  overrideLogin() {
+    this.af.auth.login({
+      provider: AuthProviders.Anonymous,
+      method: AuthMethods.Anonymous,
+    });
   }
 }

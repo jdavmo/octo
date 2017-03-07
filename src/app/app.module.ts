@@ -28,14 +28,30 @@ import { EditorTemplateComponent } from './templates/editor/editor.component';
 import { appRoutes, appRoutingProviders } from './app.routes';
 
 import { ChartComponent } from '../components/chart/chart.component';
+import { CanActivateViaAuthGuardService } from '../services';
 
 import { RequestInterceptor } from '../config/interceptors/request.interceptor';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { AngularFireModule } from 'angularfire2';
 
 const httpInterceptorProviders: Type<any>[] = [
   RequestInterceptor,
 ];
+
+// Must export the config
+export const firebaseConfig = {
+  apiKey: 'AIzaSyBdmQssgPpeNygDphMGH7NLQgTjwR3tYno',
+  authDomain: 'octo-fc528.firebaseapp.com',
+  databaseURL: 'https://octo-fc528.firebaseio.com/',
+  storageBucket: 'gs://octo-fc528.appspot.com/',
+  messagingSenderId: '<your-messaging-sender-id>'
+};
+
+
+//https://github.com/angular/angularfire2/blob/master/docs/1-install-and-setup.md
+//https://github.com/angular/angularfire2/blob/master/docs/5-user-authentication.md
+
 
 @NgModule({
   declarations: [
@@ -72,11 +88,13 @@ const httpInterceptorProviders: Type<any>[] = [
     CovalentMarkdownModule.forRoot(),
     appRoutes,
     NgxChartsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
   ], // modules needed to run this module
   providers: [
     appRoutingProviders,
     httpInterceptorProviders,
     Title,
+    CanActivateViaAuthGuardService,
   ], // additional providers needed for this module
   entryComponents: [ ],
   bootstrap: [ AppComponent ],

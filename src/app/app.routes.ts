@@ -17,12 +17,14 @@ import { TemplatesComponent } from './templates/templates.component';
 import { DashboardTemplateComponent } from './templates/dashboard/dashboard.component';
 import { EmailTemplateComponent } from './templates/email/email.component';
 import { EditorTemplateComponent } from './templates/editor/editor.component';
+import { CanActivateViaAuthGuardService } from '../services';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: '', component: MainComponent, children: [{
+  {path: '', canActivate: [CanActivateViaAuthGuardService], component: MainComponent, children: [{
       component: DashboardComponent,
       path: '',
+      canActivate: [CanActivateViaAuthGuardService]
     },
     {path: 'product', component: DashboardProductComponent, children: [
       {path: '', component: ProductOverviewComponent},
