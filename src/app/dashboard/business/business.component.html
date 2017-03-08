@@ -1,0 +1,21 @@
+<md-card>
+  <md-card-title>Business</md-card-title>
+  <md-card-subtitle>List or your business</md-card-subtitle>
+  <md-divider></md-divider>
+  <md-list class="will-loadx alert-listx">
+      <template let-item let-last="last" ngFor [ngForOf]="business">
+        <md-list-item layout-align="row">
+          <md-icon md-list-avatar class="bgc-amber-800">{{item.icon}}</md-icon>
+          <h3 md-line> {{item.description}} </h3>
+          <p md-line> {{item.name}} </p>
+        </md-list-item>
+        <md-divider *ngIf="!last" md-inset></md-divider>
+      </template>
+  </md-list>
+  <md-divider></md-divider>
+  <md-card-actions>
+    <a md-button color="accent" class="text-upper" [routerLink]="['/logs']">
+      <span>View More</span>
+    </a>
+  </md-card-actions>
+</md-card>
