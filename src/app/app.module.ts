@@ -34,6 +34,7 @@ import { RequestInterceptor } from '../config/interceptors/request.interceptor';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AngularFireModule } from 'angularfire2';
+import { BusinessComponent } from './dashboard/business/business.component';
 
 const httpInterceptorProviders: Type<any>[] = [
   RequestInterceptor,
@@ -74,6 +75,7 @@ export const firebaseConfig = {
     DashboardTemplateComponent,
     EmailTemplateComponent,
     EditorTemplateComponent,
+    BusinessComponent,
   ], // directives, components, and pipes owned by this NgModule
   imports: [
     BrowserModule,
