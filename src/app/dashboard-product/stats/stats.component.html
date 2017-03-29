@@ -2,7 +2,7 @@
     <div layout="column" layout-gt-xs="row">
         <div flex-gt-xs="100">
             <md-card>
-              <md-card-title>Product Usage</md-card-title>
+              <md-card-title>Inventario</md-card-title>
               <md-divider></md-divider>
               <div class="chart-height push-top-sm pull-left-lg pull-bottom">
                 <ngx-charts-line-chart
@@ -28,7 +28,7 @@
             <md-card>
                 <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
                     <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
-                        <span class="md-title">Product Stats</span>
+                        <span class="md-title">Productos</span>
                     </span>
                     <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm" placeholder="Search here" (searchDebounce)="search($event)" flex>
                     </td-search-box>

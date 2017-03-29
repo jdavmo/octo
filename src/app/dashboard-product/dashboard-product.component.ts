@@ -19,7 +19,7 @@ export class DashboardProductComponent implements AfterViewInit {
     // broadcast to all listener observables when loading the page
     this.media.broadcast();
 
-    this._titleService.setTitle( 'Product Dashboard' );
+    this._titleService.setTitle( 'Dashboard' );
     this.title = this._titleService.getTitle();
   }
 }
